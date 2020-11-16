@@ -79,11 +79,38 @@ void productPriceListGenerator(float price[],int n,traderAccount &c1)
 {   int w;
 	srand((unsigned) time(0));
   float randomNumber;
-  cout<<"1.abc(150-175)";
+  cout<<"1.DEBT CORPORATE BONDS(1050-1705)";
   cout<<endl;
-    cout<<"2.abc(75-82)";
   cout<<endl;
-    cout<<"3.abc(89-96)";
+    cout<<"2.GOLD:Gold ETFs(7050-8028)";
+  cout<<endl;
+  cout<<endl;
+    cout<<"3.INFRASTRUCTURE INVESTMENT TRUSTS(INVIT)(3809-4906)";
+    cout<<endl;
+    cout<<endl;
+    cout<<"4.DABUR INDIA(5106-7000)";
+  cout<<endl;
+  cout<<endl;
+  cout<<"5.ORIENT ELECTRIC(2104-3078)";
+  cout<<endl;
+  cout<<endl;
+  cout<<"6.GILLETE INDIA(3400-4500)";
+  cout<<endl;
+  cout<<endl;
+  cout<<"7.VIP INDUSTRIES(3070-3578)";
+  cout<<endl;
+  cout<<endl;
+   cout<<"8.COLGATE(1513-3508)";
+  cout<<endl;
+  cout<<endl;
+     cout<<"9.MARICO(370-508)";
+  cout<<endl;
+  cout<<endl;
+   cout<<"10.GODREJ CONSUMER(685-708)";
+  cout<<endl;
+  cout<<endl;
+  cout<<"11.BAJAJ CONSUMERS(182-250)";
+  cout<<endl;
   cout<<endl;
   int p,N;
   float temp1,temp2;
@@ -92,18 +119,42 @@ void productPriceListGenerator(float price[],int n,traderAccount &c1)
   cin>>w;  
   switch(w)
   {
-  	case 1:p=150;
-  	             N=15;
+  	case 1:p=1050;
+  	             N=655;
   	           break;
        
-      case 2:p=75;
-                   N=8;
+      case 2:p=7050;
+                   N=978;
   	           break;
   	
-  	case 3:p=89;
-  	             N=9;
+  	case 3:p=3809;
+  	             N=1097;
   	            break;
-  	 
+  	 case 4:p=5106;
+  	              N=1894;
+  	              break;
+  	  case 5:p=2104;
+  	               N=974;
+  	               break;
+  	  case 6:p=3400;
+  	               N=1100;
+  	               break;
+  	  case 7:p=3070;
+  	               N=505;
+  	                break;
+  	    case 8:p=1513;
+  	                 N=1995;       
+  	                 break;
+  	   case 9:p=370;/////
+  	                 N=138;       
+  	                 break;       
+  	     case 10:p=685;
+  	                 N=23;       
+  	                 break;      
+  	                               
+  	   case 11:p=182;
+  	                 N=68;       
+  	                 break;            
   }  
   temp2=c1.getBalance();
   temp1=p+N;
@@ -306,6 +357,38 @@ cout<<"balance: "<<c.getBalance()<<endl;
 	r.close();
 }
 
+void deleteAccount()
+{
+	traderAccount c;
+	string id;
+	string p;
+	cout<<"Enter user id:";
+	cin>>id;
+	cout<<"Enter password:";
+	cin>>p;
+ifstream r("detail.dat",ios::binary|ios::in);
+ofstream w("temp.dat",ios::binary|ios::app);	
+
+while(r.read((char*)&c,sizeof(c)))
+{
+	if(c.getID()==id&&c.getPassword()==p)
+	{
+		cout<<"account deleted"<<endl;
+		
+	}
+	else
+	{
+		w.write((char*)&c,sizeof(c));
+		
+	}
+	
+}
+w.close();
+r.close();
+remove("detail.dat");
+rename("temp.dat","detail.dat");
+}
+
 // Driver code
 int main()
 {  char yes; traderAccount c1;
@@ -378,6 +461,12 @@ cout<<price[i]<<" ";
  if(select=='y')
  {
  	show();
+ }
+ cout<<"Delete Account?(y/n):";
+ cin>>select;
+ if(select=='y')
+ {
+ 	deleteAccount();
  }
 return 0;
 }
